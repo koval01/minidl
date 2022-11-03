@@ -7,7 +7,7 @@ name = "pypi"
 flask = "*"
 youtube-dl = "*"
 yaspin = "*"
-uvicorn = "*"
+gunicorn = "*"
 
 [dev-packages]
 
