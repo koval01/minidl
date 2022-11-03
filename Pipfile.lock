@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "c0573ce37a5e84868b98ea0eada2c5084b40e79a7bfdf8013b4b6e360b7f1384"
+            "sha256": "60e560a4f819d505895e1f6713cc71dde48f205d427e02005bc4389dfc247f41"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -94,6 +94,13 @@
             "markers": "python_version >= '3.7'",
             "version": "==2.1.1"
         },
+        "termcolor-whl": {
+            "hashes": [
+                "sha256:3e7eda7348bb90ddea2d7a2171df65ed4a37adf62574fbd5459198410fdba881"
+            ],
+            "markers": "python_version >= '2.6'",
+            "version": "==1.1.2"
+        },
         "werkzeug": {
             "hashes": [
                 "sha256:7ea2d48322cc7c0f8b3a215ed73eabd7b5d75d0b50e31ab006286ccff9e00b8f",
@@ -101,6 +108,14 @@
             ],
             "markers": "python_version >= '3.7'",
             "version": "==2.2.2"
+        },
+        "yaspin": {
+            "hashes": [
+                "sha256:a6948034483cb263a467bef5a564eb35458e950fcade2cd7ad1d7d4339db4711",
+                "sha256:febdf35f3e0e45845dc2caa79a18780f9ec7a85a37a9a2c0389b314ba82d8912"
+            ],
+            "index": "pypi",
+            "version": "==2.2.0"
         },
         "youtube-dl": {
             "hashes": [
