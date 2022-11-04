@@ -19,7 +19,7 @@ class ParserLink:
     @property
     def _path_parse(self) -> str or None:
         try:
-            return urlparse(self.original_link).path.split("/")[:-1][1]
+            return urlparse(self.original_link).path.split("/")[1]
         except IndexError:
             return None
 
