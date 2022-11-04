@@ -11,6 +11,7 @@ gunicorn = "*"
 pydantic = "*"
 streamlink = "*"
 vistir = "*"
+requests = "*"
 
 [dev-packages]
 
