@@ -36,7 +36,7 @@ class ParserLink:
     def get(self) -> str or None:
         p = self._path_parse
         q = self._query_parse
-        return p if p else (q if q else None)
+        return q if q else (p if p else None)
 
 
 class Video:
