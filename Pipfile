@@ -8,6 +8,7 @@ flask = "*"
 youtube-dl = "*"
 yaspin = "*"
 gunicorn = "*"
+pydantic = "*"
 
 [dev-packages]
 

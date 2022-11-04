@@ -1,17 +1,21 @@
-from flask import Flask
-import youtube_dl
+from flask import Flask, request
+from methods import ParserLink, Video
 
 app = Flask(__name__)
 
 
-@app.route('/<video_id>')
-def get_video(video_id):
+@app.route('/<path:path>')
+def get_video(path):
     try:
-        with youtube_dl.YoutubeDL() as ydl:
-            return ydl.extract_info(
-                'https://www.youtube.com/watch?v=%s' % video_id,
-                download=False
-            )
+        video_id = ParserLink(f"{path}?{request.query_string.decode()}").get
+        if video_id:
+            return Video(video_id).get
+        return {
+            "success": False,
+            "body": {
+                "msg": "video_id filed required"
+            }
+        }
     except Exception as e:
         return {"exception": e}
 
