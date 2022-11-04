@@ -10,6 +10,7 @@ yaspin = "*"
 gunicorn = "*"
 pydantic = "*"
 streamlink = "*"
+vistir = "*"
 
 [dev-packages]
 
