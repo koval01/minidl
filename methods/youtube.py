@@ -6,8 +6,8 @@ from urllib.parse import urlparse, parse_qs
 from pydantic import ValidationError
 from youtube_dl import YoutubeDL
 
-import modelsDL
-from modelsDL import Format
+from models import modelsDL
+from models.modelsDL import Format
 
 
 class ParserLink:
@@ -70,19 +70,22 @@ class Video:
 
     @property
     def _build_response(self) -> dict:
-        dl = self._get_dl
-        response = self._build_model(dl)
-        if type(response) is list:
-            log.warning(response)
-            return {}
+        try:
+            dl = self._get_dl
+            response = self._build_model(dl)
+            if type(response) is list:
+                log.warning(response)
+                return {}
 
-        videos = self._select_videos(response)
+            videos = self._select_videos(response)
 
-        return {
-            "duration": response.duration,
-            "title": response.title,
-            "url": videos[-1:][0].url
-        }
+            return {
+                "duration": response.duration,
+                "title": response.title,
+                "url": videos[-1:][0].url
+            }
+        except Exception as e:
+            log.warning(e)
 
     @property
     def get(self) -> dict:
