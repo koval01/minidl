@@ -19,7 +19,10 @@ class ParserLink:
     @property
     def _path_parse(self) -> str or None:
         try:
-            return urlparse(self.original_link).path.split("/")[1]
+            index = 1
+            if "/shorts/" in self.original_link:
+                index += 1
+            return urlparse(self.original_link).path.split("/")[index]
         except IndexError:
             return None
 
