@@ -1,6 +1,6 @@
 import json
 import logging as log
-from typing import Dict
+from typing import Dict, List
 from urllib.parse import urlparse, parse_qs
 
 from pydantic import ValidationError
@@ -64,7 +64,7 @@ class Video:
             return json.loads(e.json())
 
     @staticmethod
-    def _select_videos(video_object: modelsDL.Model) -> list[Format]:
+    def _select_videos(video_object: modelsDL.Model) -> List[Format]:
         array_formats = video_object.formats
         return [
             f for f in array_formats
