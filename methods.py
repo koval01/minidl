@@ -1,10 +1,11 @@
-import re as regex
 import json
-from urllib.parse import urlparse, parse_qs
-from youtube_dl import YoutubeDL
-
+import logging as log
+import re as regex
 from typing import Dict
+from urllib.parse import urlparse, parse_qs
+
 from pydantic import ValidationError
+from youtube_dl import YoutubeDL
 
 import modelsDL
 from modelsDL import Format
@@ -74,20 +75,15 @@ class Video:
         dl = self._get_dl
         response = self._build_model(dl)
         if type(response) is list:
-            return {
-                "success": False,
-                "body": response
-            }
+            log.warning(response)
+            return {}
 
         videos = self._select_videos(response)
 
         return {
-            "success": True,
-            "body": {
-                "duration": response.duration,
-                "title": response.title,
-                "url": videos[-1:][0].url
-            }
+            "duration": response.duration,
+            "title": response.title,
+            "url": videos[-1:][0].url
         }
 
     @property

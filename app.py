@@ -1,4 +1,7 @@
+import logging as log
+
 from flask import Flask, request
+
 from methods import ParserLink, Video
 
 app = Flask(__name__)
@@ -10,14 +13,10 @@ def get_video(path):
         video_id = ParserLink(f"{path}?{request.query_string.decode()}").get
         if video_id:
             return Video(video_id).get
-        return {
-            "success": False,
-            "body": {
-                "msg": "video_id filed required"
-            }
-        }
+        return {}
     except Exception as e:
-        return {"exception": e}
+        log.warning(e)
+        return {}
 
 
 if __name__ == '__main__':
