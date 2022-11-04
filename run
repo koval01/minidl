@@ -1,0 +1,1 @@
+gunicorn --workers=3 app:app
