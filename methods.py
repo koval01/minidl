@@ -1,6 +1,5 @@
 import json
 import logging as log
-import re as regex
 from typing import Dict
 from urllib.parse import urlparse, parse_qs
 
@@ -16,12 +15,11 @@ class ParserLink:
 
     def __init__(self, original_link: str) -> None:
         self.original_link: str = original_link
-        self.regex_pattern = regex.compile(r"https://youtu\.be/([{0-9A-z}\-_]*$)")
 
     @property
-    def _regex_parse(self) -> str or None:
+    def _path_parse(self) -> str or None:
         try:
-            return regex.search(self.regex_pattern, self.original_link).group(1)
+            return urlparse(self.original_link).path.split("/")[:-1][0]
         except IndexError:
             return None
 
