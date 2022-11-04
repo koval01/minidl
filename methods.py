@@ -24,7 +24,7 @@ class ParserLink:
             return None
 
     @property
-    def _parser_urllib(self) -> str or None:
+    def _query_parse(self) -> str or None:
         parse_result = urlparse(self.original_link)
         query_dict = parse_qs(parse_result.query)
 
@@ -35,8 +35,8 @@ class ParserLink:
     @property
     def get(self) -> str or None:
         p = self._path_parse
-        u = self._parser_urllib
-        return p if p else (u if u else None)
+        q = self._query_parse
+        return p if p else (q if q else None)
 
 
 class Video:
