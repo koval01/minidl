@@ -12,6 +12,8 @@ pydantic = "*"
 streamlink = "*"
 vistir = "*"
 requests = "*"
+beautifulsoup4 = "*"
+lxml = "*"
 
 [dev-packages]
 

@@ -15,18 +15,21 @@ def empty():
 @app.route('/<path:path>')
 def get_video(path):
     try:
-        result = None
         full_url = f"{path}?{request.query_string.decode()}"
 
         video_yt_id = youtube.ParserLink(full_url).get
         if video_yt_id:
             result = youtube.Video(video_yt_id).get
+            if result:
+                return result
 
         twitch_get = twitch.Stream(path).get
         if twitch_get:
             result = twitch_get
+            if result:
+                return result
 
-        return result if result else {}
+        return {}
     except Exception as e:
         log.warning(e)
         return {}
