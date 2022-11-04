@@ -34,9 +34,9 @@ class ParserLink:
 
     @property
     def get(self) -> str or None:
-        r = None
+        p = self._path_parse
         u = self._parser_urllib
-        return r if r else (u if u else None)
+        return p if p else (u if u else None)
 
 
 class Video:
