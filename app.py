@@ -28,9 +28,9 @@ def node():
         "host": request.host,
         "ip": requests.get("https://ident.me").text,
         "flask": flask_ver,
-        "cpu_usage": cpu_usage,
-        "ram_percent": psutil.virtual_memory()[2],
-        "time": time()
+        "cpu_percent": round(cpu_usage),
+        "ram_percent": round(psutil.virtual_memory()[2]),
+        "time": round(time())
     })
 
 
