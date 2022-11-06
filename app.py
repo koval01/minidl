@@ -23,23 +23,25 @@ def empty():
 
 @app.route('/node')
 def node():
-    load1, load5, load15 = psutil.getloadavg()
-    cpu_usage = lambda load: round((load / os.cpu_count()) * 100)
+    if os.getenv("DEBUG"):
+        load1, load5, load15 = psutil.getloadavg()
+        cpu_usage = lambda load: round((load / os.cpu_count()) * 100)
 
-    return jsonify({
-        "host": request.host,
-        "ip": requests.get("https://ident.me").text,
-        "flask": flask_ver,
-        "python": sys.version,
-        "cpu_load": {
-            "load1": cpu_usage(load1),
-            "load5": cpu_usage(load5),
-            "load15": cpu_usage(load15)
-        },
-        "ram_percent": round(psutil.virtual_memory()[2]),
-        "time": round(time()),
-        "platform": platform.platform()
-    })
+        return jsonify({
+            "host": request.host,
+            "ip": requests.get("https://ident.me").text,
+            "flask": flask_ver,
+            "python": sys.version,
+            "cpu_load": {
+                "load1": cpu_usage(load1),
+                "load5": cpu_usage(load5),
+                "load15": cpu_usage(load15)
+            },
+            "ram_percent": round(psutil.virtual_memory()[2]),
+            "time": round(time()),
+            "platform": platform.platform()
+        })
+    return {}
 
 
 @app.route('/media_proxy/<path:token>')
