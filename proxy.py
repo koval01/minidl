@@ -1,24 +1,41 @@
+import json
+
 import requests
 from flask import request, Response, jsonify
+
+from cryptography.fernet import Fernet
 
 
 class Proxy:
 
-    def __init__(self, path: str, zalupa_token: str) -> None:
-        self.path = path
-        self.zalupa_token = zalupa_token
+    def __init__(self, key: bytes, token: str = None) -> None:
+        self.fer = Fernet(key)
+        self.token: str = token
 
     @property
-    def _check_token(self) -> bool:
-        return True
+    def _get_url(self) -> str:
+        raw = self.fer.decrypt(self.token)
+        body = json.loads(raw.decode("utf-8"))
+        return body["url"]
 
-    def proxy(self, *args, **kwargs) -> Response or jsonify:
-        if not self._check_token:
+    def encrypt_url(self, url: str) -> str:
+        body = json.dumps({
+            "url": url
+        })
+        raw = self.fer.encrypt(body.encode("utf-8"))
+        return raw.decode("utf-8")
+
+    @property
+    def request(self) -> Response or jsonify:
+        url = self._get_url
+        if not url:
             return jsonify({})
+
+        print(url)
 
         resp = requests.request(
             method=request.method,
-            url=f"{self.path}?{request.query_string.decode()}",
+            url=url,
             headers={key: value for (key, value) in request.headers if key != 'Host'},
             data=request.get_data(),
             cookies=request.cookies,

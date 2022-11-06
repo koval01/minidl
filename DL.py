@@ -3,18 +3,27 @@ import logging as log
 import re as regex
 from typing import Dict, List
 
+from flask import request
+
 from pydantic import ValidationError
 from youtube_dl import YoutubeDL
 
 from models import modelsDL
 from models.modelsDL import Format
 
+import proxy
+
 
 class Video:
     """Get video with youtube-dl lib"""
 
-    def __init__(self, url: str) -> None:
+    def __init__(self, secret_key: bytes, url: str) -> None:
+        self.secret_key: bytes = secret_key
         self.url: str = url
+
+        self.proxy_need_hosts = [
+            "porntube.com"
+        ]
 
     def _check_short(self) -> str:
         return "https://youtu.be/%s" % self.url.split("/")[-1:][0] \
@@ -32,6 +41,16 @@ class Video:
             self.url = self._youtube_playlist()
 
             return ydl.extract_info(self.url, download=False)
+
+    def _encrypt_link(self, source_url: str) -> str:
+        for host in self.proxy_need_hosts:
+            if host in source_url:
+                return "https://%s/media_proxy/%s" % (
+                    request.remote_addr,
+                    proxy.Proxy(self.secret_key).encrypt_url(source_url)
+                )
+
+        return source_url
 
     @staticmethod
     def _build_model(video_object: Dict) -> modelsDL.Model or list:
@@ -69,7 +88,7 @@ class Video:
             return {
                 "duration": response.duration,
                 "title": response.title,
-                "url": videos[-1:][0].url
+                "url": self._encrypt_link(videos[-1:][0].url)
             }
         except Exception as e:
             log.warning(e)
