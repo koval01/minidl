@@ -18,7 +18,7 @@ def empty():
 
 
 @app.route('/node')
-def empty():
+def node():
     return {
         "name": request.host,
         "ip": requests.get("https://ident.me").text
