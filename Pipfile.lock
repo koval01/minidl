@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "51a9ce9e64c3690cad438502c0204725f43f76d9bb6d2683ef125bbbf33e3779"
+            "sha256": "fbee69f701185bd3fa4373f617b68d924c20aa2c841e70ea0101db57a0283117"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -29,7 +29,7 @@
                 "sha256:0d9c601124e5a6ba9712dbc60d9c53c21e34f5f641fe83002317394311bdce14",
                 "sha256:90c1a32f1d68f940488354e36370f6cca89f0f106db09518524c88d6ed83f382"
             ],
-            "markers": "python_full_version >= '3.6.0'",
+            "markers": "python_version >= '3.6'",
             "version": "==2022.9.24"
         },
         "cffi": {
@@ -106,7 +106,7 @@
                 "sha256:5a3d016c7c547f69d6f81fb0db9449ce888b418b5b9952cc5e6e66843e9dd845",
                 "sha256:83e9a75d1911279afd89352c68b45348559d1fc0506b054b346651b5e7fee29f"
             ],
-            "markers": "python_full_version >= '3.6.0'",
+            "markers": "python_version >= '3.6'",
             "version": "==2.1.1"
         },
         "click": {
@@ -389,15 +389,8 @@
                 "sha256:3b2503d3c7084a42b1ebd08116e5f81aadfaea95863628c80a3b774a11b7c759",
                 "sha256:fc53893b3da2c33de295667a0e19f078c14bf86544af307354de5fcf12a3f30d"
             ],
-            "markers": "python_full_version >= '3.6.0'",
+            "markers": "python_version >= '3.6'",
             "version": "==2.3.2.post1"
-        },
-        "termcolor-whl": {
-            "hashes": [
-                "sha256:3e7eda7348bb90ddea2d7a2171df65ed4a37adf62574fbd5459198410fdba881"
-            ],
-            "markers": "python_version >= '2.6'",
-            "version": "==1.1.2"
         },
         "typing-extensions": {
             "hashes": [
@@ -430,14 +423,6 @@
             ],
             "markers": "python_version >= '3.7'",
             "version": "==2.2.2"
-        },
-        "yaspin": {
-            "hashes": [
-                "sha256:a6948034483cb263a467bef5a564eb35458e950fcade2cd7ad1d7d4339db4711",
-                "sha256:febdf35f3e0e45845dc2caa79a18780f9ec7a85a37a9a2c0389b314ba82d8912"
-            ],
-            "index": "pypi",
-            "version": "==2.2.0"
         },
         "youtube-dl": {
             "hashes": [

@@ -6,7 +6,6 @@ name = "pypi"
 [packages]
 flask = "*"
 youtube-dl = "*"
-yaspin = "*"
 gunicorn = "*"
 pydantic = "*"
 vistir = "*"
