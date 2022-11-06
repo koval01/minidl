@@ -13,6 +13,7 @@ requests = "*"
 beautifulsoup4 = "*"
 lxml = "*"
 cryptography = "*"
+hdrezkaapi = "*"
 
 [dev-packages]
 

@@ -1,7 +1,7 @@
 import json
 
 import requests
-from flask import request, Response, jsonify
+from flask import request, Response, jsonify, stream_with_context
 
 from cryptography.fernet import Fernet
 
@@ -39,12 +39,15 @@ class Proxy:
             headers={key: value for (key, value) in request.headers if key != 'Host'},
             data=request.get_data(),
             cookies=request.cookies,
-            allow_redirects=False)
+            allow_redirects=False,
+            stream=True)
 
         excluded_headers = ['content-encoding', 'content-length', 'transfer-encoding', 'connection']
         headers = [(name, value) for (name, value) in resp.raw.headers.items()
                    if name.lower() not in excluded_headers]
 
-        response = Response(resp.content, resp.status_code, headers)
+        response = Response(
+            stream_with_context(resp.iter_content(chunk_size=1024)),
+            resp.status_code, headers)
         return response
 

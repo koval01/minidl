@@ -4,6 +4,7 @@ from flask import Flask, request
 import os
 
 import DL
+import rezka
 import proxy
 
 app = Flask(__name__)
@@ -23,7 +24,11 @@ def media_proxy(token):
 @app.route('/<path:path>')
 def get_video(path):
     try:
-        obj = DL.Video(secret_key, f"{path}?{request.query_string.decode()}").get
+        full_url = f"{path}?{request.query_string.decode()}"
+        if "rezka." in path:
+            obj = rezka.Rezka(secret_key, full_url).get
+        else:
+            obj = DL.Video(secret_key, full_url).get
         return obj if obj else {}
     except Exception as e:
         log.warning(e)
