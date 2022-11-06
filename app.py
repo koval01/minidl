@@ -1,13 +1,13 @@
 import logging as log
 
 from flask import Flask, request
-from cryptography.fernet import Fernet
+import os
 
 import DL
 import proxy
 
 app = Flask(__name__)
-secret_key = Fernet.generate_key()
+secret_key = os.getenv("SECRET_KEY").encode()
 
 
 @app.route('/')
