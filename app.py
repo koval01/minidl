@@ -1,12 +1,14 @@
 import logging as log
-
-import requests
-from flask import Flask, request, __version__ as flask_ver
 import os
+from time import time
+
+import psutil
+import requests
+from flask import Flask, request, jsonify, __version__ as flask_ver
 
 import DL
-import rezka
 import proxy
+import rezka
 
 app = Flask(__name__)
 secret_key = os.getenv("SECRET_KEY").encode()
@@ -19,11 +21,17 @@ def empty():
 
 @app.route('/node')
 def node():
-    return {
+    load1, load5, load15 = psutil.getloadavg()
+    cpu_usage = (load15 / os.cpu_count()) * 100
+
+    return jsonify({
         "host": request.host,
         "ip": requests.get("https://ident.me").text,
-        "app": flask_ver
-    }
+        "flask": flask_ver,
+        "cpu_usage": cpu_usage,
+        "ram_percent": psutil.virtual_memory()[2],
+        "time": time()
+    })
 
 
 @app.route('/media_proxy/<path:token>')

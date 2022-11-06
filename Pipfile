@@ -14,6 +14,7 @@ beautifulsoup4 = "*"
 lxml = "*"
 cryptography = "*"
 hdrezkaapi = "*"
+psutil = "*"
 
 [dev-packages]
 
