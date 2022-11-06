@@ -1,5 +1,6 @@
 import logging as log
 
+import requests
 from flask import Flask, request
 import os
 
@@ -14,6 +15,14 @@ secret_key = os.getenv("SECRET_KEY").encode()
 @app.route('/')
 def empty():
     return {}
+
+
+@app.route('/node')
+def empty():
+    return {
+        "name": request.host,
+        "ip": requests.get("https://ident.me").text
+    }
 
 
 @app.route('/media_proxy/<path:token>')
