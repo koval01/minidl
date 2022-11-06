@@ -3,6 +3,7 @@ import os
 from time import time
 
 import psutil
+import platform
 import requests
 from flask import Flask, request, jsonify, __version__ as flask_ver
 
@@ -22,15 +23,20 @@ def empty():
 @app.route('/node')
 def node():
     load1, load5, load15 = psutil.getloadavg()
-    cpu_usage = (load15 / os.cpu_count()) * 100
+    cpu_usage = lambda load: round((load / os.cpu_count()) * 100)
 
     return jsonify({
         "host": request.host,
         "ip": requests.get("https://ident.me").text,
         "flask": flask_ver,
-        "cpu_percent": round(cpu_usage),
+        "cpu_load": {
+            "load1": cpu_usage(load1),
+            "load5": cpu_usage(load5),
+            "load15": cpu_usage(load15)
+        },
         "ram_percent": round(psutil.virtual_memory()[2]),
-        "time": round(time())
+        "time": round(time()),
+        "platform": platform.platform()
     })
 
 
