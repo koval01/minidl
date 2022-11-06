@@ -1,7 +1,7 @@
 import logging as log
 
 import requests
-from flask import Flask, request
+from flask import Flask, request, __version__ as flask_ver
 import os
 
 import DL
@@ -20,8 +20,9 @@ def empty():
 @app.route('/node')
 def node():
     return {
-        "name": request.host,
-        "ip": requests.get("https://ident.me").text
+        "host": request.host,
+        "ip": requests.get("https://ident.me").text,
+        "app": flask_ver
     }
 
 
