@@ -1,8 +1,9 @@
 import logging as log
 
 from flask import Flask, request
+from cryptography.fernet import Fernet
 
-from methods import youtube, twitch
+import DL
 
 app = Flask(__name__)
 
@@ -15,21 +16,8 @@ def empty():
 @app.route('/<path:path>')
 def get_video(path):
     try:
-        full_url = f"{path}?{request.query_string.decode()}"
-
-        video_yt_id = youtube.ParserLink(full_url).get
-        if video_yt_id:
-            result = youtube.Video(video_yt_id).get
-            if result:
-                return result
-
-        twitch_get = twitch.Stream(path).get
-        if twitch_get:
-            result = twitch_get
-            if result:
-                return result
-
-        return {}
+        obj = DL.Video(f"{path}?{request.query_string.decode()}").get
+        return obj if obj else {}
     except Exception as e:
         log.warning(e)
         return {}

@@ -9,11 +9,11 @@ youtube-dl = "*"
 yaspin = "*"
 gunicorn = "*"
 pydantic = "*"
-streamlink = "*"
 vistir = "*"
 requests = "*"
 beautifulsoup4 = "*"
 lxml = "*"
+cryptography = "*"
 
 [dev-packages]
 
