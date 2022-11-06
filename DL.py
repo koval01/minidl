@@ -46,7 +46,7 @@ class Video:
         for host in self.proxy_need_hosts:
             if host in source_url:
                 return "https://%s/media_proxy/%s" % (
-                    request.remote_addr,
+                    request.host_url,
                     proxy.Proxy(self.secret_key).encrypt_url(source_url)
                 )
 
