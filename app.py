@@ -1,5 +1,6 @@
 import logging as log
 import os
+import sys
 from time import time
 
 import psutil
@@ -29,6 +30,7 @@ def node():
         "host": request.host,
         "ip": requests.get("https://ident.me").text,
         "flask": flask_ver,
+        "python": sys.version,
         "cpu_load": {
             "load1": cpu_usage(load1),
             "load5": cpu_usage(load5),
