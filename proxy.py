@@ -52,6 +52,7 @@ class Proxy:
 
         headers = {key: value for (key, value) in request.headers if key != 'Host'}
         headers = {**headers, **HEADERS, "Referer": url}
+        headers = {key: value for (key, value) in request.headers if "X-" not in key}
 
         print(headers)
 
