@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import base64
 from itertools import product
-from proxy import PROXIES
+from proxy import PROXIES, HEADERS
 
 
 class HdRezkaStreamSubtitles():
@@ -68,8 +68,7 @@ class HdRezkaApi():
     __version__ = 4.0
 
     def __init__(self, url):
-        self.HEADERS = {
-            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36'}
+        self.HEADERS = HEADERS
         self.url = url.split(".html")[0] + ".html"
         self.page = self.getPage()
         self.soup = self.getSoup()
