@@ -53,7 +53,7 @@ class Proxy:
         headers = {key: value for (key, value) in request.headers if key != 'Host'}
         headers = {**headers, **HEADERS}
         if headers.get("Referer"):
-            del headers["Referer"]
+            headers["Referer"] = url
 
         print(headers)
 
