@@ -13,7 +13,6 @@ requests = "*"
 beautifulsoup4 = "*"
 lxml = "*"
 cryptography = "*"
-psutil = "*"
 
 [dev-packages]
 
