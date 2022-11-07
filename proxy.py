@@ -50,9 +50,8 @@ class Proxy:
         if not url:
             return jsonify({})
 
-        headers = {key: value for (key, value) in request.headers if key != 'Host'}
+        headers = {key: value for (key, value) in request.headers if (key != 'Host' or "X-" not in key)}
         headers = {**headers, **HEADERS, "Referer": url}
-        headers = {key: value for (key, value) in request.headers if "X-" not in key}
 
         print(headers)
 
