@@ -41,7 +41,9 @@ class Proxy:
         if not url:
             return jsonify({})
 
-        print(url)
+        headers = {key: value for (key, value) in request.headers if key != 'Host'}
+        headers["User-Agent"] = HEADERS["User-Agent"]
+        del headers["Referer"]
 
         resp = requests.request(
             method=request.method,
