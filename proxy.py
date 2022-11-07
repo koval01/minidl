@@ -60,8 +60,6 @@ class Proxy:
         if headers.get("Cookie"):
             del headers["Cookie"]
 
-        print(headers)
-
         resp = requests.request(
             method=request.method,
             url=url,
