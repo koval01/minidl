@@ -53,6 +53,8 @@ class Proxy:
         headers = {key: value for (key, value) in request.headers if key != 'Host'}
         headers = {**headers, **HEADERS}
 
+        print(headers)
+
         resp = requests.request(
             method=request.method,
             url=url,
