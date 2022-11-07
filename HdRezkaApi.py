@@ -69,7 +69,7 @@ class HdRezkaApi():
 
     def __init__(self, url):
         self.HEADERS = {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36'}
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36'}
         self.url = url.split(".html")[0] + ".html"
         self.page = self.getPage()
         self.soup = self.getSoup()
