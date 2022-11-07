@@ -13,6 +13,8 @@ requests = "*"
 beautifulsoup4 = "*"
 lxml = "*"
 cryptography = "*"
+pysocks = "*"
+urllib3 = "==1.25.11"
 
 [dev-packages]
 
