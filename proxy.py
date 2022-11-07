@@ -57,6 +57,8 @@ class Proxy:
             if (key != 'Host' or "X-" not in key)
         }
         headers = {**headers, **HEADERS, "Host": urllib.parse.urlparse(url).netloc}
+        if headers.get("Cookie"):
+            del headers["Cookie"]
 
         print(headers)
 
