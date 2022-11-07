@@ -1,6 +1,8 @@
 import json
 import os
 
+import urllib.parse
+
 import requests
 from flask import request, Response, jsonify, stream_with_context
 
@@ -54,7 +56,7 @@ class Proxy:
             key: value for (key, value) in request.headers
             if (key != 'Host' or "X-" not in key)
         }
-        headers = {**headers, **HEADERS, "Referer": url}
+        headers = {**headers, **HEADERS, "Host": urllib.parse.urlparse(url).netloc}
 
         print(headers)
 
