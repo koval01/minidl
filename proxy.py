@@ -11,7 +11,6 @@ PROXIES = {
     'http': env_proxy,
     'https': env_proxy
 }
-# test proxy
 
 
 class Proxy:
