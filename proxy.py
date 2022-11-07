@@ -7,8 +7,8 @@ from flask import request, Response, jsonify, stream_with_context
 from cryptography.fernet import Fernet
 
 PROXIES = {
-    'http': 'socks5://92.101.95.210:1080',
-    'https': 'socks5://92.101.95.210:1080'
+    'http': 'socks5://95.174.119.8:1080',
+    'https': 'socks5://95.174.119.8:1080'
 }
 # test proxy
 
