@@ -51,9 +51,7 @@ class Proxy:
             return jsonify({})
 
         headers = {key: value for (key, value) in request.headers if key != 'Host'}
-        headers = {**headers, **HEADERS}
-        if headers.get("Referer"):
-            headers["Referer"] = url
+        headers = {**headers, **HEADERS, "Referer": url}
 
         print(headers)
 
