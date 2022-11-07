@@ -6,9 +6,10 @@ from flask import request, Response, jsonify, stream_with_context
 
 from cryptography.fernet import Fernet
 
+env_proxy = os.getenv("PROXY_URL")
 PROXIES = {
-    'http': 'socks5://95.174.119.8:1080',
-    'https': 'socks5://95.174.119.8:1080'
+    'http': env_proxy,
+    'https': env_proxy
 }
 # test proxy
 
