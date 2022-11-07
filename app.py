@@ -1,3 +1,5 @@
+from dotenv import load_dotenv
+
 import logging as log
 import os
 from flask import Flask, request
@@ -5,6 +7,8 @@ from flask import Flask, request
 import DL
 import proxy
 import rezka
+
+load_dotenv()
 
 app = Flask(__name__)
 secret_key = os.getenv("SECRET_KEY").encode()

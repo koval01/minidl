@@ -15,6 +15,7 @@ lxml = "*"
 cryptography = "*"
 pysocks = "*"
 urllib3 = "==1.25.11"
+python-dotenv = "*"
 
 [dev-packages]
 
