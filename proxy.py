@@ -1,9 +1,16 @@
 import json
+import os
 
 import requests
 from flask import request, Response, jsonify, stream_with_context
 
 from cryptography.fernet import Fernet
+
+PROXIES = {
+    'http': 'socks5://92.101.95.210:1080',
+    'https': 'socks5://92.101.95.210:1080'
+}
+# test proxy
 
 
 class Proxy:
@@ -36,6 +43,7 @@ class Proxy:
         resp = requests.request(
             method=request.method,
             url=url,
+            proxies=PROXIES,
             headers={key: value for (key, value) in request.headers if key != 'Host'},
             data=request.get_data(),
             cookies=request.cookies,

@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "a2c6d304e46ec4e5c5f673ca67b6e9f63a5840b47b9a0790ba71b88846f395b0"
+            "sha256": "0769fc570851a1085d53f4a12b0a9e2106d6955f29b13887eda17d50a7048ab1"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -172,14 +172,6 @@
             ],
             "index": "pypi",
             "version": "==20.1.0"
-        },
-        "hdrezkaapi": {
-            "hashes": [
-                "sha256:a747031c2f246553e6e3fbabf82f59a6e2bb12ae212d1af2c4829e0f82efdc63",
-                "sha256:bc370d40a1d6df8b645c7b4d0ce77f150063c8f804c04186f9dbfc2074adc6cd"
-            ],
-            "index": "pypi",
-            "version": "==4.0"
         },
         "idna": {
             "hashes": [
