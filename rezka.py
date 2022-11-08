@@ -22,7 +22,7 @@ class Rezka:
         try:
             result = result.groupdict()
         except AttributeError as e:
-            log.error(e.__class___.__name__)
+            log.error(e.__class__.__name__)
             return {"season": None, "episode": None, "translation": None}
 
         result["season"] = 1 if not result["season"] else result["season"]
