@@ -29,7 +29,10 @@ class Rezka:
 
     @staticmethod
     def _get_redirect_url(url: str) -> str:
-        return requests.get(url, allow_redirects=False, proxies=proxy.PROXIES).headers["Location"]
+        return requests.get(
+            url, allow_redirects=False,
+            # proxies=proxy.PROXIES
+        ).headers["Location"]
 
     @property
     def get(self) -> dict:

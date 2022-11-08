@@ -84,7 +84,11 @@ class HdRezkaApi():
         self.seriesInfo = None
 
     def getPage(self):
-        return requests.get(self.url, headers=self.HEADERS, proxies=PROXIES)
+        return requests.get(
+            self.url,
+            headers=self.HEADERS,
+            # proxies=PROXIES
+        )
 
     def getSoup(self):
         return BeautifulSoup(self.page.content, 'html.parser')
@@ -192,7 +196,11 @@ class HdRezkaApi():
                 "translator_id": self.translators[i],
                 "action": "get_episodes"
             }
-            r = requests.post("https://rezka.ag/ajax/get_cdn_series/", data=js, headers=self.HEADERS, proxies=PROXIES)
+            r = requests.post(
+                "https://rezka.ag/ajax/get_cdn_series/",
+                data=js, headers=self.HEADERS,
+                # proxies=PROXIES
+            )
             response = r.json()
             if response['success']:
                 seasons, episodes = self.getEpisodes(response['seasons'], response['episodes'])
@@ -206,7 +214,11 @@ class HdRezkaApi():
 
     def getStream(self, season=None, episode=None, translation=None, index=0):
         def makeRequest(data):
-            r = requests.post("https://rezka.ag/ajax/get_cdn_series/", data=data, headers=self.HEADERS, proxies=PROXIES)
+            r = requests.post(
+                "https://rezka.ag/ajax/get_cdn_series/",
+                data=data, headers=self.HEADERS,
+                # proxies=PROXIES
+            )
             r = r.json()
             if r['success']:
                 arr = self.clearTrash(r['url']).split(",")
