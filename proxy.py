@@ -64,7 +64,7 @@ class Proxy:
         resp = requests.request(
             method=request.method,
             url=url,
-            proxies=PROXIES,
+            # proxies=PROXIES,
             headers=headers,
             data=request.get_data(),
             cookies=request.cookies,
