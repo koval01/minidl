@@ -16,10 +16,15 @@ class Rezka:
 
     @property
     def _get_pos(self) -> dict:
-        pattern = regex.compile(r"@(s(?P<season>\d))?(e(?P<episode>\d))?(t(?P<translation>\d))?")
+        pattern = regex.compile(r"@(s(?P<season>\d*))?(e(?P<episode>\d*))?(t(?P<translation>.*))?")
         result = regex.search(pattern, self.url)
 
-        result = result.groupdict()
+        try:
+            result = result.groupdict()
+        except AttributeError as e:
+            log.error(e.__class___.__name__)
+            return {"season": None, "episode": None, "translation": None}
+
         result["season"] = 1 if not result["season"] else result["season"]
         result["episode"] = 1 if not result["episode"] else result["episode"]
 
