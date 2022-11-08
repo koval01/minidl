@@ -31,7 +31,7 @@ class Rezka:
     def _get_redirect_url(url: str) -> str:
         return requests.get(
             url, allow_redirects=False,
-            # proxies=proxy.PROXIES
+            proxies=proxy.PROXIES
         ).headers["Location"]
 
     @property

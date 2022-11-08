@@ -87,7 +87,7 @@ class HdRezkaApi():
         return requests.get(
             self.url,
             headers=self.HEADERS,
-            # proxies=PROXIES
+            proxies=PROXIES
         )
 
     def getSoup(self):
@@ -199,7 +199,7 @@ class HdRezkaApi():
             r = requests.post(
                 "https://rezka.ag/ajax/get_cdn_series/",
                 data=js, headers=self.HEADERS,
-                # proxies=PROXIES
+                proxies=PROXIES
             )
             response = r.json()
             if response['success']:
@@ -217,7 +217,7 @@ class HdRezkaApi():
             r = requests.post(
                 "https://rezka.ag/ajax/get_cdn_series/",
                 data=data, headers=self.HEADERS,
-                # proxies=PROXIES
+                proxies=PROXIES
             )
             r = r.json()
             if r['success']:
