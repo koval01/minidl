@@ -4,7 +4,7 @@ import os
 import urllib.parse
 
 import requests
-from flask import request, Response, jsonify, stream_with_context
+from flask import request, Response, stream_with_context
 
 from cryptography.fernet import Fernet
 
@@ -47,10 +47,10 @@ class Proxy:
         return raw.decode("utf-8")
 
     @property
-    def request(self) -> Response or jsonify:
+    def request(self) -> Response or dict:
         url = self._get_url
         if not url:
-            return jsonify({})
+            return {}
 
         headers = {
             key: value for (key, value) in request.headers

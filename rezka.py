@@ -36,6 +36,6 @@ class Rezka:
             "url":
                 self._encrypt_link(
                     self._get_redirect_url(
-                        self.rezka.getStream(1, 1)(720))),
+                        self.rezka.get_stream(1, 1)(720))),
             "duration": self.rezka.id
         }
