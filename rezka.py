@@ -16,10 +16,9 @@ class Rezka:
 
     @property
     def _get_pos(self) -> dict:
-        pattern = regex.compile(r"@s(?P<season>\d)e(?P<episode>\d)")
+        pattern = regex.compile(r"@(s(?P<season>\d))?(e(?P<episode>\d))?(t(?P<translation>\d))?")
         result = regex.search(pattern, self.url)
-        print(result)
-        return {}
+        return result.groupdict()
 
     def _encrypt_link(self, source_url: str) -> str:
         return "%smedia_proxy/%s" % (
@@ -36,11 +35,16 @@ class Rezka:
 
     @property
     def get(self) -> dict:
+        settings = self._get_pos
         return {
             "title": self.rezka.name,
             "url":
                 self._encrypt_link(
                     self._get_redirect_url(
-                        self.rezka.getStream(1, 1)(480))),
-            "duration": self.rezka.id
+                        self.rezka.getStream(
+                            settings["season"],
+                            settings["episode"],
+                            settings["translation"]
+                        )(480))),
+            "duration": 1
         }
