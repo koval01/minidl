@@ -21,7 +21,7 @@ def empty():
 
 @app.route('/ip')
 def get_ip():
-    return {"ip": request.remote_addr}
+    return {"ip": request.environ['REMOTE_ADDR']}
 
 
 @app.route('/media_proxy/<path:token>')
