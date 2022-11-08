@@ -1,5 +1,6 @@
 from flask import request
 import hashlib
+import os
 
 
 class Methods:
@@ -12,4 +13,5 @@ class Methods:
 
     @staticmethod
     def hash_valid(hash_string: str) -> bool:
-        return hashlib.sha256(Methods.get_ip().encode("utf-8")).hexdigest() == hash_string
+        return hashlib.sha256(f"{Methods.get_ip()}+{os.getenv('SEC_SALT')}"
+                              .encode("utf-8")).hexdigest() == hash_string
