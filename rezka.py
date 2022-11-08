@@ -1,8 +1,10 @@
-from HdRezkaApi import *
 import re as regex
-from flask import request
-import proxy
+
 import requests
+from flask import request
+
+import proxy
+from HdRezkaApi import *
 
 
 class Rezka:

@@ -1,12 +1,13 @@
 import json
 import os
-
 import urllib.parse
 
 import requests
+from cryptography.fernet import Fernet
+from dotenv import load_dotenv
 from flask import request, Response, stream_with_context
 
-from cryptography.fernet import Fernet
+load_dotenv()
 
 env_proxy = os.getenv("PROXY_URL")
 PROXIES = {
@@ -78,4 +79,3 @@ class Proxy:
             stream_with_context(resp.iter_content(chunk_size=384)),
             resp.status_code, headers)
         return response
-

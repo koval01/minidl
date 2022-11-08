@@ -1,9 +1,11 @@
+import base64
+import logging as log
+from itertools import product
+
 import requests
 from bs4 import BeautifulSoup
-import base64
-from itertools import product
+
 from proxy import PROXIES, HEADERS
-import logging as log
 
 
 class HdRezkaStreamSubtitles():

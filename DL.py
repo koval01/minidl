@@ -4,14 +4,12 @@ import re as regex
 from typing import Dict, List
 
 from flask import request
-
 from pydantic import ValidationError
 from youtube_dl import YoutubeDL
 
+import proxy
 from models import modelsDL
 from models.modelsDL import Format
-
-import proxy
 
 
 class Video:

@@ -1,6 +1,10 @@
-from flask import request
 import hashlib
 import os
+
+from dotenv import load_dotenv
+from flask import request
+
+load_dotenv()
 
 
 class Methods:

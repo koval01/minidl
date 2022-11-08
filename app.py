@@ -1,20 +1,20 @@
-from dotenv import load_dotenv
-
 import logging as log
 import os
+
+from dotenv import load_dotenv
 from flask import Flask, request
-from methods import Methods
 
 import DL
 import proxy
 import rezka
+from methods import Methods
 
 load_dotenv()
 
 log.basicConfig(
-     level=log.INFO,
-     format="[%(asctime)s] {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s",
-     datefmt="%H:%M:%S"
+    level=log.INFO,
+    format="[%(asctime)s] {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s",
+    datefmt="%H:%M:%S"
 )
 
 app = Flask(__name__)
