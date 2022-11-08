@@ -16,7 +16,6 @@ log.basicConfig(
      format="[%(asctime)s] {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s",
      datefmt="%H:%M:%S"
 )
-log.info(proxy.PROXIES)
 
 app = Flask(__name__)
 secret_key = os.getenv("SECRET_KEY").encode()
