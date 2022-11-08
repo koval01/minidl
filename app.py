@@ -27,7 +27,9 @@ def empty():
 
 @app.route('/ip')
 def get_ip():
-    return {"ip": request.environ['REMOTE_ADDR']}
+    return {"ip": request.environ['HTTP_X_FORWARDED_FOR']} \
+        if request.environ.get('HTTP_X_FORWARDED_FOR') \
+        else {"ip": request.environ['REMOTE_ADDR']}
 
 
 @app.route('/media_proxy/<path:token>')
