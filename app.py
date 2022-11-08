@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 import logging as log
 import os
 from flask import Flask, request
+from methods import Methods
 
 import DL
 import proxy
@@ -27,18 +28,21 @@ def empty():
 
 @app.route('/ip')
 def get_ip():
-    return {"ip": request.environ['HTTP_X_FORWARDED_FOR']} \
-        if request.environ.get('HTTP_X_FORWARDED_FOR') \
-        else {"ip": request.environ['REMOTE_ADDR']}
+    return {"ip": Methods.get_ip()}
+
+
+@app.route('/ip/<hash_string>')
+def hash_valid(hash_string: str):
+    return {"valid": Methods.hash_valid(hash_string)}
 
 
 @app.route('/media_proxy/<path:token>')
-def media_proxy(token):
+def media_proxy(token: str):
     return proxy.Proxy(secret_key, token).request
 
 
 @app.route('/<path:path>')
-def get_video(path):
+def get_video(path: str):
     try:
         full_url = f"{path}?{request.query_string.decode()}"
         if "rezka." in path:
