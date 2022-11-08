@@ -76,6 +76,6 @@ class Proxy:
                    if name.lower() not in excluded_headers]
 
         response = Response(
-            stream_with_context(resp.iter_content(chunk_size=256)),
+            stream_with_context(resp.iter_content(chunk_size=512)),
             resp.status_code, headers)
         return response
