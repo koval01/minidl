@@ -19,6 +19,11 @@ def empty():
     return {}
 
 
+@app.route('/ip')
+def get_ip():
+    return {"ip": request.remote_addr}
+
+
 @app.route('/media_proxy/<path:token>')
 def media_proxy(token):
     return proxy.Proxy(secret_key, token).request
