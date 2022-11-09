@@ -16,6 +16,7 @@ pysocks = "*"
 urllib3 = "==1.25.11"
 python-dotenv = "*"
 yt-dlp = "*"
+validators = "*"
 
 [dev-packages]
 

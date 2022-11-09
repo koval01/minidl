@@ -1,6 +1,7 @@
 import logging as log
 import os
 
+import validators
 from dotenv import load_dotenv
 from flask import Flask, request
 
@@ -45,6 +46,8 @@ def media_proxy(token: str):
 def get_video(path: str):
     try:
         full_url = f"{path}?{request.query_string.decode()}"
+        if not validators.url(full_url):
+            return {}
         if "rezka." in path:
             obj = rezka.Rezka(secret_key, full_url).get
         else:

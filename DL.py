@@ -19,9 +19,9 @@ class Video:
         self.secret_key: bytes = secret_key
         self.url: str = url
 
-        self.proxy_need_hosts = [
+        self.proxy_need_hosts = (
             "porntube.com"
-        ]
+        )
 
     def _check_short(self) -> str:
         return "https://youtu.be/%s" % self.url.split("/")[-1:][0] \
@@ -57,20 +57,27 @@ class Video:
         except ValidationError as e:
             return json.loads(e.json())
 
-    @staticmethod
-    def _select_videos(video_object: modelsDL.Model) -> List[Format]:
+    def _check_audio(self, video_object: modelsDL.Model) -> bool:
+        if any(("youtube.com" in self.url, "youtu.be" in self.url)):
+            if any((video_object.acodec != "none", video_object.acodec is not None)):
+                return True
+            return False
+        else:
+            return True
+
+    def _select_videos(self, video_object: modelsDL.Model) -> List[Format]:
         array_formats = video_object.formats
         check_format = lambda format_var: len([
-            ft for ft in [
+            ft for ft in (
                 "x360", "x720",
                 "360x", "720x",
                 "360p", "720p",
                 "Direct video"
-            ]
+            )
             if ft in format_var]) != 0
         return [
             f for f in array_formats
-            if check_format(f.format)
+            if check_format(f.format) and self._check_audio(video_object)
         ]
 
     @property

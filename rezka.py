@@ -1,6 +1,5 @@
 import re as regex
 
-import requests
 from flask import request
 
 import proxy
