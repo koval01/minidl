@@ -59,9 +59,7 @@ class Video:
 
     def _check_audio(self, video_object: modelsDL.Model) -> bool:
         if any(("youtube.com" in self.url, "youtu.be" in self.url)):
-            if any((video_object.acodec != "none", video_object.acodec is not None)):
-                return True
-            return False
+            return True if video_object.acodec == "mp4a" else False
         else:
             return True
 
