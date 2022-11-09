@@ -78,6 +78,10 @@ class Video:
             if check_format(f.format) and self._check_audio(f)
         ]
 
+    @staticmethod
+    def _is_direct(dl_object: modelsDL.Model) -> bool:
+        return True if dl_object.url else False
+
     @property
     def _build_response(self) -> dict:
         try:
@@ -86,6 +90,13 @@ class Video:
             if type(response) is list:
                 log.warning(response)
                 return {}
+
+            if self._is_direct(response):
+                return {
+                    "duration": response.duration,
+                    "title": response.title,
+                    "url": response.url
+                }
 
             videos = self._select_videos(response)
 

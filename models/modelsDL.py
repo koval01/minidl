@@ -64,6 +64,7 @@ class Model(BaseModel):
     fps: int = None
     height: int = None
     id: str
+    url: str = None
     is_live: Any
     requested_formats: List[RequestedFormat] = None
     requested_subtitles: Any
