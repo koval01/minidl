@@ -5,7 +5,7 @@ from typing import Dict, List
 
 from flask import request
 from pydantic import ValidationError
-from youtube_dl import YoutubeDL
+from yt_dlp import YoutubeDL
 
 import proxy
 from models import modelsDL
@@ -64,7 +64,8 @@ class Video:
             ft for ft in [
                 "x360", "x720",
                 "360x", "720x",
-                "360p", "720p"
+                "360p", "720p",
+                "Direct video"
             ]
             if ft in format_var]) != 0
         return [

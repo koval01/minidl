@@ -5,7 +5,6 @@ name = "pypi"
 
 [packages]
 flask = "*"
-youtube-dl = "*"
 gunicorn = "*"
 pydantic = "*"
 vistir = "*"
@@ -16,6 +15,7 @@ cryptography = "*"
 pysocks = "*"
 urllib3 = "==1.25.11"
 python-dotenv = "*"
+yt-dlp = "*"
 
 [dev-packages]
 
