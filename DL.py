@@ -57,9 +57,9 @@ class Video:
         except ValidationError as e:
             return json.loads(e.json())
 
-    def _check_audio(self, video_object: modelsDL.Model) -> bool:
+    def _check_audio(self, format_object: modelsDL.Format) -> bool:
         if any(("youtube.com" in self.url, "youtu.be" in self.url)):
-            return True if video_object.acodec == "mp4a" else False
+            return True if "mp4a" in format_object.acodec else False
         else:
             return True
 
@@ -75,7 +75,7 @@ class Video:
             if ft in format_var]) != 0
         return [
             f for f in array_formats
-            if check_format(f.format) and self._check_audio(video_object)
+            if check_format(f.format) and self._check_audio(f)
         ]
 
     @property
