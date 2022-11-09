@@ -20,7 +20,7 @@ class Video:
         self.url: str = url
 
         self.proxy_need_hosts = (
-            "porntube.com"
+            "porntube.com",
         )
 
     def _check_short(self) -> str:
