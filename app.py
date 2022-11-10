@@ -8,6 +8,7 @@ from flask import Flask, request
 import DL
 import proxy
 import rezka
+from HdRezkaApi import *
 from methods import Methods
 
 load_dotenv()
@@ -42,9 +43,14 @@ def media_proxy(token: str):
     return proxy.Proxy(secret_key, token).request
 
 
+@app.route('/rezka/translations/<path:path>')
+def rezka_translations(path: str):
+    return HdRezkaApi(f"{path}?{request.query_string.decode()}").getTranslations()
+
+
 @app.route('/<path:path>')
 def get_video(path: str):
-    try:
+    # try:
         full_url = f"{path}?{request.query_string.decode()}"
         if not validators.url(full_url):
             return {}
@@ -53,9 +59,9 @@ def get_video(path: str):
         else:
             obj = DL.Video(secret_key, full_url).get
         return obj if obj else {}
-    except Exception as e:
-        log.warning(e)
-        return {}
+    # except Exception as e:
+    #     log.warning(e)
+    #     return {}
 
 
 if __name__ == '__main__':

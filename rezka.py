@@ -15,19 +15,19 @@ class Rezka:
 
     @property
     def _get_pos(self) -> dict:
-        pattern = regex.compile(r"@(s(?P<season>\d*))?(e(?P<episode>\d*))?(t(?P<translation>.*))?")
+        pattern = regex.compile(r"@(s(?P<season>\d*))?(e(?P<episode>\d*))?(t(?P<translation>\d*))?")
         result = regex.search(pattern, self.url)
 
         try:
             result = result.groupdict()
         except AttributeError as e:
             log.error(e.__class__.__name__)
-            return {"season": None, "episode": None, "translation": None}
+            return {"season": 1, "episode": 1, "translation": None}
 
-        result["season"] = 1 if not result["season"] else result["season"]
-        result["episode"] = 1 if not result["episode"] else result["episode"]
-
-        return result
+        return dict(map(
+            lambda kv: (kv[0], regex.sub(r"^\d*", "", kv[1])
+                        if kv[1] else (kv[0], None)),
+            result.items()))
 
     def _encrypt_link(self, source_url: str) -> str:
         return "%smedia_proxy/%s" % (
