@@ -100,21 +100,17 @@ class Video:
                 log.warning(response)
                 return {}
 
-            self.source_url = ""
-            response_template = {
+            response_template = lambda url: {
                 "duration": self._duration_set(response.duration),
                 "title": response.title,
-                "url": self._encrypt_link(self.source_url)
+                "url": self._encrypt_link(url)
             }
 
             if self._is_direct(response):
-                self.source_url = response.url
-                return response_template
+                return response_template(response.url)
 
             videos = self._select_videos(response)
-
-            self.source_url = videos[-1:][0].url
-            return response_template
+            return response_template(videos[-1:][0].url)
         except Exception as e:
             log.warning(e)
 
