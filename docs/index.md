@@ -33,6 +33,8 @@ https://zalupa-cinema-api-test.herokuapp.com/https://rezka.ag/series/thriller/93
 
 Params:
 ```
+@sIDeIDtID
+
 s = season id
 e = episode id
 t = translator id
