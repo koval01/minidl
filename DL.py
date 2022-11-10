@@ -88,8 +88,9 @@ class Video:
         return True if dl_object.url else False
 
     def _duration_set(self, orig_duration: int or None) -> int or None:
-        return 1 if any((True for u in self.duration_list if u in self.url)) \
-            else (orig_duration if orig_duration is int else None)
+        return orig_duration
+        # return 1 if any((True for u in self.duration_list if u in self.url)) \
+        #     else (orig_duration if orig_duration is int else None)
 
     @property
     def _build_response(self) -> dict:
