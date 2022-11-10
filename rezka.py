@@ -46,7 +46,6 @@ class Rezka:
     @property
     def get(self) -> dict:
         settings = self._get_pos
-        print(settings)
         return {
             "title": self.rezka.name,
             "url":
