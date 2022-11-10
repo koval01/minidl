@@ -87,9 +87,9 @@ class Video:
     def _is_direct(dl_object: modelsDL.Model) -> bool:
         return True if dl_object.url else False
 
-    def _duration_set(self, orig_duration: int or None) -> int or None:
-        return 1 if any((True for u in self.duration_list if u in self.url)) \
-            else (orig_duration if type(orig_duration) is int else None)
+    def _duration_set(self, orig_duration: int or None) -> int:
+        return 30 if any((True for u in self.duration_list if u in self.url)) \
+            else (orig_duration if type(orig_duration) is int else -1)
 
     @property
     def _build_response(self) -> dict:
