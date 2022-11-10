@@ -96,7 +96,7 @@ class Video:
                 return {
                     "duration": response.duration,
                     "title": response.title,
-                    "url": response.url
+                    "url": self._encrypt_link(response.url)
                 }
 
             videos = self._select_videos(response)
