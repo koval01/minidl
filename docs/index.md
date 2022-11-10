@@ -2,20 +2,24 @@
 
 ### Example
 Request:
-```https://zalupa-cinema-api-test.herokuapp.com/rezka/https://rezka.ag/series/thriller/9364-mister-robot-2015.html```
+```
+https://zalupa-cinema-api-test.herokuapp.com/rezka/https://rezka.ag/series/thriller/9364-mister-robot-2015.html
+```
 
-Response model:
+Response example:
 
 ```json
 {
-  "translation_name": {
+  "TVShows": {
     "episodes": {
-      "int_key(episode_id)": "name"
+      "1": {
+          "1": "Серия 1"
+        }
+      }
     },
     "seasons": {
-      "int_key(season_id)": "name"
+      "1": "Сезон 1"
     },
-    "translator_id": "0"
-  }
+    "translator_id": "232"
 }
 ```
