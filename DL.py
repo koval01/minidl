@@ -43,7 +43,7 @@ class Video:
 
     def _encrypt_link(self, source_url: str) -> str:
         for host in self.proxy_need_hosts:
-            if host in source_url:
+            if host in self.url:
                 return "%smedia_proxy/%s" % (
                     request.host_url,
                     proxy.Proxy(self.secret_key).encrypt_url(source_url)
