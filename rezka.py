@@ -25,8 +25,8 @@ class Rezka:
             return {"season": 1, "episode": 1, "translation": None}
 
         return dict(map(
-            lambda kv: (kv[0], regex.sub(r"^\d*", "", kv[1])
-                        if kv[1] else (kv[0], None)),
+            lambda kv: (kv[0], regex.sub(r"^\d*", "", kv[1]
+                        if kv[1] else None)),
             result.items()))
 
     def _encrypt_link(self, source_url: str) -> str:
@@ -45,6 +45,7 @@ class Rezka:
     @property
     def get(self) -> dict:
         settings = self._get_pos
+        print(settings)
         return {
             "title": self.rezka.name,
             "url":
