@@ -24,10 +24,11 @@ class Rezka:
             log.error(e.__class__.__name__)
             return {"season": 1, "episode": 1, "translation": None}
 
-        return dict(map(
-            lambda kv: (kv[0], regex.sub(r"^\d*", "", kv[1]
-                        if kv[1] else None)),
-            result.items()))
+        return result
+        # return dict(map(
+        #     lambda kv: (kv[0], regex.sub(r"\D*", "", kv[1]
+        #                 if kv[1] else None)),
+        #     result.items()))
 
     def _encrypt_link(self, source_url: str) -> str:
         return "%smedia_proxy/%s" % (
