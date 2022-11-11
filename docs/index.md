@@ -26,6 +26,15 @@ Response example:
 }
 ```
 
+### Proxy media
+Request:
+```
+https://zalupa-cinema-api-test.herokuapp.com/media_proxy/<token>/<sign>
+```
+
+Response example:
+#### Video/Audio/Stream
+
 ### Rezka translations
 Request:
 ```
