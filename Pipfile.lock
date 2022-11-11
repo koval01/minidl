@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "35e83a8eb9bc5ec255af2e4dad0789eb8a753f795021a09cfd7bc9e36b710180"
+            "sha256": "11a47dd765fb29679c72cbf384ce288884fedc41b8903edfccef9a2eabc26285"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -23,6 +23,14 @@
             ],
             "index": "pypi",
             "version": "==4.11.1"
+        },
+        "blinker": {
+            "hashes": [
+                "sha256:1eb563df6fdbc39eeddc177d953203f99f097e9bf0e2b8f9f3cf18b6ca425e36",
+                "sha256:923e5e2f69c155f2cc42dafbbd70e16e3fde24d2d4aa2ab72fbe386238892462"
+            ],
+            "index": "pypi",
+            "version": "==1.5"
         },
         "brotli": {
             "hashes": [
@@ -513,6 +521,14 @@
             "index": "pypi",
             "version": "==2.28.1"
         },
+        "sentry-sdk": {
+            "hashes": [
+                "sha256:60b13757d6344a94bf0ccb3c0a006c4de77daab09871b30fbbd05d5ec24e54fb",
+                "sha256:f185c53496d79b280fe5d9d21e6572aee1ab802d3354eb12314d216cfbaa8d30"
+            ],
+            "index": "pypi",
+            "version": "==1.9.0"
+        },
         "setuptools": {
             "hashes": [
                 "sha256:d0b9a8433464d5800cbe05094acf5c6d52a91bfac9b52bcfc4d41382be5d5d31",
@@ -645,11 +661,11 @@
         },
         "yt-dlp": {
             "hashes": [
-                "sha256:1772a2e6f32b971b4d026deae3044f576b8052035255ca340f345cfe90d38d38",
-                "sha256:cc21d91048b275bda7018bdc3103374882261ccf29720206d61b10e168c8b719"
+                "sha256:8bb7bd9ab2e6ecf4db7627e9151ce00572ae7ee24dedc78f611e7467b0ccd7d9",
+                "sha256:f6b962023c17a77151476f0f6ed71be87d017629ba5d9994528bc548521191b6"
             ],
             "index": "pypi",
-            "version": "==2022.10.4"
+            "version": "==2022.11.11"
         }
     },
     "develop": {}

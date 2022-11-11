@@ -1,5 +1,7 @@
 from logging import log
 import os
+import sentry_sdk
+from sentry_sdk.integrations.flask import FlaskIntegration
 
 import validators
 from dotenv import load_dotenv
@@ -18,6 +20,15 @@ log.basicConfig(
     format="[%(asctime)s] {%(pathname)s:%(lineno)d} %(levelname)s - \"%(message)s\"",
     datefmt="%H:%M:%S"
 )
+
+if os.getenv("FLASK_ENV") != "development":
+    sentry_sdk.init(
+        dsn=os.getenv("SENTRY_URL"),
+        integrations=[
+            FlaskIntegration(),
+        ],
+        traces_sample_rate=1.0
+    )
 
 app = Flask(__name__)
 secret_key = os.getenv("SECRET_KEY").encode()
