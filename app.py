@@ -3,7 +3,7 @@ import os
 
 import validators
 from dotenv import load_dotenv
-from flask import Flask, request
+from flask import Flask, request, make_response
 
 import DL
 import proxy
@@ -43,9 +43,21 @@ def media_proxy(token: str):
     return proxy.Proxy(secret_key, token).request
 
 
-@app.route('/rezka/<path:path>')
-def rezka_info(path: str):
+@app.route('/rezka/translations/<path:path>')
+def rezka_translations(path: str):
+    return HdRezkaApi(path).getTranslations()
+
+
+@app.route('/rezka/serial/<path:path>')
+def rezka_serial(path: str):
     return HdRezkaApi(path).getSeasons()
+
+
+@app.route('/rezka/raw/<path:path>')
+def rezka_raw(path: str):
+    response = make_response(HdRezkaApi(path).getSoup().prettify(), 200)
+    response.mimetype = "text/plain"
+    return response
 
 
 @app.route('/<path:path>')
