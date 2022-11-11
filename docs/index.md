@@ -31,6 +31,7 @@ Request:
 ```
 https://zalupa-cinema-api-test.herokuapp.com/media_proxy/<token>/<sign>
 ```
+Sign is sha256 hash, example for create: "127.0.0.1+8r3hsgisejgisj39faghsdghsi" (client ip and salt from venv backend)
 
 Response example:
 #### Video/Audio/Stream
@@ -108,6 +109,6 @@ Response example:
 {
   "duration": 1,
   "title": "Мистер Робот",
-  "url": "https://zalupa-cinema-api-test.herokuapp.com/media_proxy/gAAAAABjboAHObALk-uQnITyCLvsQ7K_4Xv_ipBr4nkGYQf471RwMOQzKt6gXBPagXSD5C_pxFnRkhLjEyOJ8iRd7iIHU5-b7z46I7DldFY9UstWKaMpxLiBP1KAnV366P61IVdK5XV76KQUaAlgDT02BW0IY06PL9HHTKgzTzdUuq_qKmXTuGmKAnutlS-77VEcoIDUSqtw1smaSjRSHEvhZiYiKXDugJ34Z4xB4tuy2-90MsbJj6kI38ZqoZ8-0g5P1BVZdYlJ355YZxQch-Z0Ut4muztWkyaGwZWokjO6k06qq9lnUjQqk2T6X0rBe8hOXArMYNzONDF2a4FFK-fftUCH2Eyl6v1DoaafrRWxUpjAJLlnHkJEttt9qH97pXy5JLeG7Cun/027391b4c640b30858513b9689c9b77e1a8e41272b55b6c2d3214e5ea5397f88"
+  "url": "https://zalupa-cinema-api-test.herokuapp.com/media_proxy/gAAAAABjboAHObALk-uQnITyCLvsQ7K_4Xv_ipBr4nkGYQf471RwMOQzKt6gXBPagXSD5C_pxFnRkhLjEyOJ8iRd7iIHU5-b7z46I7DldFY9UstWKaMpxLiBP1KAnV366P61IVdK5XV76KQUaAlgDT02BW0IY06PL9HHTKgzTzdUuq_qKmXTuGmKAnutlS-77VEcoIDUSqtw1smaSjRSHEvhZiYiKXDugJ34Z4xB4tuy2-90MsbJj6kI38ZqoZ8-0g5P1BVZdYlJ355YZxQch-Z0Ut4muztWkyaGwZWokjO6k06qq9lnUjQqk2T6X0rBe8hOXArMYNzONDF2a4FFK-fftUCH2Eyl6v1DoaafrRWxUpjAJLlnHkJEttt9qH97pXy5JLeG7Cun"
 }
 ```
