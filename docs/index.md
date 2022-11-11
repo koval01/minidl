@@ -39,6 +39,18 @@ Response example:
 }
 ```
 
+### Rezka raw
+Request:
+```
+https://zalupa-cinema-api-test.herokuapp.com/rezka/raw/https://rezka.ag/films/horror/52592-varvar-2022.html
+```
+
+Response example:
+
+```html
+<html lang="ru">{{ source_body }}</html>
+```
+
 ### Rezka selector
 
 *If it's a movie, you don't need to set the parameters*
