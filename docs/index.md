@@ -1,3 +1,31 @@
+### Get client IP
+Request:
+```
+https://zalupa-cinema-api-test.herokuapp.com/ip
+```
+
+Response example:
+
+```json
+{
+  "ip": "127.0.0.1"
+}
+```
+
+### Verify client sign
+Request:
+```
+https://zalupa-cinema-api-test.herokuapp.com/ip/<token>
+```
+
+Response example:
+
+```json
+{
+  "valid": true
+}
+```
+
 ### Rezka translations
 Request:
 ```
