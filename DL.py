@@ -19,10 +19,7 @@ class Video:
         self.secret_key: bytes = secret_key
         self.url: str = url
 
-        self.proxy_need_hosts = (
-            "porntube.com",
-            "instagram.com"
-        )
+        self.proxy_need_hosts = ("localhost",)
 
         self.duration_list = (
             "instagram.com",
