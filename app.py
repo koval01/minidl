@@ -10,6 +10,7 @@ from flask import Flask, request, make_response
 import DL
 import proxy
 import rezka
+import traceback
 from HdRezkaApi import *
 from methods import Methods
 
@@ -83,7 +84,7 @@ def get_video(path: str):
             obj = DL.Video(secret_key, full_url).get
         return obj if obj else {}
     except Exception as e:
-        log.warning(e)
+        log.warning(traceback.print_tb(e.__traceback__))
         return {}
 
 
