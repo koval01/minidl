@@ -48,10 +48,11 @@ class Rezka:
         settings = self._get_pos
         return {
             "title": self.rezka.name,
-            "url": self.rezka.getStream(
-                settings["season"],
-                settings["episode"],
-                settings["translation"]
-            )(720),
+            "url": self._get_redirect_url(
+                self.rezka.getStream(
+                    settings["season"],
+                    settings["episode"],
+                    settings["translation"]
+                )(720)),
             "duration": 1
         }

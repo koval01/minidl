@@ -1,4 +1,5 @@
 import base64
+import logging
 import logging as log
 from itertools import product
 
@@ -130,7 +131,8 @@ class HdRezkaApi():
             children = translators.findChildren(recursive=False)
             for child in children:
                 if child.text:
-                    arr[child.text] = child.attrs['data-translator_id']
+                    arr[child.attrs['data-translator_id']] = child.text
+                    # arr[child.text] = child.attrs['data-translator_id']
 
         if not arr:
             # auto-detect
@@ -193,7 +195,7 @@ class HdRezkaApi():
         for i in self.translators:
             js = {
                 "id": self.id,
-                "translator_id": self.translators[i],
+                "translator_id": i,
                 "action": "get_episodes"
             }
             r = requests.post(
@@ -238,12 +240,13 @@ class HdRezkaApi():
 
             season = str(season)
             episode = str(episode)
+            translation_id = str(translation_id)
 
             if not self.seriesInfo:
                 self.getSeasons()
             seasons = self.seriesInfo
 
-            tr_str = list(self.translators.keys())[list(self.translators.values()).index(translation_id)]
+            tr_str = str(translation_id)
 
             if not season in list(seasons[tr_str]['episodes']):
                 raise ValueError(f'Season "{season}" is not defined')
@@ -269,9 +272,10 @@ class HdRezkaApi():
         if not self.translators:
             self.translators = self.getTranslations()
 
+        translation = str(translation)
         if translation:
             if translation.isnumeric():
-                if translation in self.translators.values():
+                if translation in self.translators.keys():
                     tr_id = translation
                 else:
                     raise ValueError(f'Translation with code "{translation}" is not defined')

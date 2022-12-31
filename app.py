@@ -65,6 +65,11 @@ def rezka_serial(path: str):
     return HdRezkaApi(path).getSeasons()
 
 
+@app.route('/rezka/episode/<path:path>/<int:season>/<int:episode>/<int:translation>')
+def rezka_episode(path: str, season: int, episode: int, translation: int):
+    return HdRezkaApi(path).getStream(season, episode, translation)
+
+
 @app.route('/rezka/raw/<path:path>')
 def rezka_raw(path: str):
     response = make_response(HdRezkaApi(path).getSoup().prettify(), 200)
@@ -89,4 +94,4 @@ def get_video(path: str):
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(port=3400)
