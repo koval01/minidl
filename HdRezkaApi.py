@@ -232,7 +232,12 @@ class HdRezkaApi():
                     res = i.split("[")[1].split("]")[0]
                     video = i.split("[")[1].split("]")[1].split(" or ")[1]
                     stream.append(res, video)
-                return stream
+                stream = stream(resolution="720p")
+                return {
+                    "duration": 1,
+                    "url": stream,
+                    "title": HdRezkaApi(self.url).name
+                }
 
         def getStreamSeries(self, season, episode, translation_id):
             if not (season and episode):
