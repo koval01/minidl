@@ -1,5 +1,4 @@
 import base64
-import logging
 import logging as log
 from itertools import product
 
@@ -131,8 +130,7 @@ class HdRezkaApi():
             children = translators.findChildren(recursive=False)
             for child in children:
                 if child.text:
-                    arr[child.attrs['data-translator_id']] = child.text
-                    # arr[child.text] = child.attrs['data-translator_id']
+                    arr[child.text] = child.attrs['data-translator_id']
 
         if not arr:
             # auto-detect
@@ -195,7 +193,7 @@ class HdRezkaApi():
         for i in self.translators:
             js = {
                 "id": self.id,
-                "translator_id": i,
+                "translator_id": self.translators[i],
                 "action": "get_episodes"
             }
             r = requests.post(
@@ -232,12 +230,16 @@ class HdRezkaApi():
                     res = i.split("[")[1].split("]")[0]
                     video = i.split("[")[1].split("]")[1].split(" or ")[1]
                     stream.append(res, video)
-                stream = stream(resolution="720p")
-                return {
-                    "duration": 1,
-                    "url": stream,
-                    "title": HdRezkaApi(self.url).name
-                }
+
+                if season and episode:
+                    stream = stream(resolution="720p")
+                    return {
+                        "duration": 1,
+                        "url": stream,
+                        "title": HdRezkaApi(self.url).name
+                    }
+
+                return stream
 
         def getStreamSeries(self, season, episode, translation_id):
             if not (season and episode):
@@ -245,13 +247,12 @@ class HdRezkaApi():
 
             season = str(season)
             episode = str(episode)
-            translation_id = str(translation_id)
 
             if not self.seriesInfo:
                 self.getSeasons()
             seasons = self.seriesInfo
 
-            tr_str = str(translation_id)
+            tr_str = list(self.translators.keys())[list(self.translators.values()).index(translation_id)]
 
             if not season in list(seasons[tr_str]['episodes']):
                 raise ValueError(f'Season "{season}" is not defined')
@@ -280,7 +281,7 @@ class HdRezkaApi():
         translation = str(translation)
         if translation:
             if translation.isnumeric():
-                if translation in self.translators.keys():
+                if translation in self.translators.values():
                     tr_id = translation
                 else:
                     raise ValueError(f'Translation with code "{translation}" is not defined')
